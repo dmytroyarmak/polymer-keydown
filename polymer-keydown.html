@@ -28,9 +28,6 @@
           keyHandlers = Object.create(null),
           isNaN = function(e) {
             return (Object.prototype.toString.call(e) == '[object Number]') && (e != +e);
-          },
-          fireKeydown = function(el) {
-            el.fire('keydown');
           };
 
       window.onkeydown = function checkKey(e) {
@@ -38,7 +35,11 @@
         var handlers = keyHandlers[e.keyCode];
 
         if (handlers) {
-          handlers.forEach(fireKeydown);
+          handlers.forEach(function(element){
+            element.fire('keydown', {
+              originalEvent: e
+            });
+          });
         }
 
         if (originalHandler) {
