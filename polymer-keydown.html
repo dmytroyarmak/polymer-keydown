@@ -47,16 +47,13 @@
         }
       };
 
-      Polymer('polymer-keydown', {
-      /**
-       * Code of key for listen to.
-       *
-       * @attribute code
-       * @type number
-       * @default NaN
-       */
-        code: NaN,
-
+      Polymer({
+        is: 'polymer-keydown',
+        properties: {
+          code: {
+            type: Number
+          }
+        },
         ready: function() {
           var code = this.code;
           if (!isNaN(code)) {
